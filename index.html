@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luciano Herrera — Full stack y Roblox</title>
+  <meta name="description" content="Luciano Herrera, desarrollador full stack junior de Canelones, Uruguay. APIs, webs y juegos en Roblox.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    try {
+      const theme = localStorage.getItem("theme");
+      if (theme) document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script>
+</head>
+<body class="is-loading">
+  <div class="loader" aria-hidden="true">
+    <div class="loader__word">
+      <span>L</span><span>U</span><span>C</span><span>I</span><span>A</span><span>N</span><span>O</span>
+    </div>
+    <svg class="loader__scribble" viewBox="0 0 600 40" preserveAspectRatio="none">
+      <path d="M4 26C90 8 170 34 260 18S430 6 520 22S590 26 596 14"/>
+    </svg>
+    <p class="loader__count"><span data-count>000</span></p>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="smoke" aria-hidden="true"></div>
+  <div class="scrollbar" aria-hidden="true"><span class="scrollbar__thumb"></span></div>
+
+  <svg class="defs" aria-hidden="true" focusable="false">
+    <symbol id="pj-body" viewBox="0 0 940 1298">
+      <path d="M940 419L664 524.655V313.345L940 419Z"/>
+      <ellipse cx="381.5" cy="273.5" rx="289.5" ry="273.5"/>
+      <rect x="92" y="297" width="579" height="1001"/>
+      <path d="M96 541L192 1298H0L96 541Z"/>
+      <path d="M671 541L767 1298H575L671 541Z"/>
+    </symbol>
+  </svg>
+
+  <header class="nav">
+    <a class="nav__logo" href="#top" aria-label="Volver arriba">
+      <svg class="nav__mark" viewBox="-179 0 1298 1298" aria-hidden="true"><use href="#pj-body"/></svg>
+    </a>
+    <div class="nav__tools">
+      <button class="tool" type="button" data-theme-toggle aria-label="Cambiar modo claro u oscuro"><span class="theme-dot"></span></button>
+      <button class="tool tool--text" type="button" data-lang-toggle aria-label="Cambiar idioma">EN</button>
+      <button class="tool sound" type="button" aria-pressed="false" aria-label="Sonido" data-sound>
+        <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+    <a class="btn" href="#contacto" data-end data-magnetic><span class="btn__fill"></span><span class="btn__text" data-i18n="nav.cta">Escribile</span><span class="btn__arrow">↓</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero" data-spot="top">
+      <h1 class="hero__title" data-hero-title><span data-i18n="hero.a">Luciano hace apps que</span> <span class="circled"><span data-i18n="hero.b">se sienten</span><svg viewBox="0 0 300 110" preserveAspectRatio="none" aria-hidden="true"><path d="M150 8C60 6 8 30 12 58C16 92 110 104 190 98C262 92 296 70 288 42C280 14 200 2 120 10C80 14 52 22 40 30"/></svg></span> <span data-i18n="hero.c">bien.</span></h1>
+      <div class="lang" data-theme-picker hidden>
+        <div class="lang__options">
+          <button class="lang__option" type="button" data-theme-choice="light" data-magnetic><span class="btn__text">Claro · Light</span></button>
+          <button class="lang__option" type="button" data-theme-choice="dark" data-magnetic><span class="btn__text">Oscuro · Dark</span></button>
+        </div>
+      </div>
+      <div class="lang" data-lang-picker hidden>
+        <div class="lang__options">
+          <button class="lang__option" type="button" data-lang="es" data-magnetic><span class="btn__text">Español</span></button>
+          <button class="lang__option" type="button" data-lang="en" data-magnetic><span class="btn__text">English</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="hago" data-spot="hago">
+      <header class="section-head">
+        <h2 data-split data-i18n="hago.title">Qué hace</h2>
+      </header>
+      <div class="services__grid">
+        <article class="service" data-tilt data-reveal>
+          <h3 class="service__title" data-i18n="s1.title">Webs que venden</h3>
+          <p class="service__text" data-i18n="s1.text">Páginas, tiendas y paneles rápidos, claros y fáciles de usar.</p>
+        </article>
+        <article class="service service--alt" data-tilt data-reveal>
+          <h3 class="service__title" data-i18n="s2.title">El motor</h3>
+          <p class="service__text" data-i18n="s2.text">Servidores, datos y conexiones que funcionan sin que nadie lo note.</p>
+        </article>
+        <article class="service service--dark" data-tilt data-reveal>
+          <h3 class="service__title" data-i18n="s3.title">Apps útiles</h3>
+          <p class="service__text" data-i18n="s3.text">Programas y plugins que ahorran tiempo en el día a día.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="work" id="trabajo" data-spot="trabajo">
+      <header class="section-head">
+        <h2 data-split data-i18n="work.title">Proyectos</h2>
+      </header>
+      <div class="pgrid" data-say="projects">
+        <button class="pcard" type="button" data-project="p5">
+          <span class="pcard__media"><img src="img/projects/aimgearz-home.webp" alt="Portada de AimGearZ con un mousepad y teclas flotando" loading="lazy" decoding="async"></span>
+          <span class="pcard__foot"><span class="pcard__title">AimGearZ</span><span class="pcard__btn" data-i18n="p.more">Ver</span></span>
+        </button>
+        <button class="pcard" type="button" data-project="p6">
+          <span class="pcard__media"><img src="img/projects/lifegood-producto.webp" alt="Página de producto de la taza mezcladora con oferta, stock y packs" loading="lazy" decoding="async"></span>
+          <span class="pcard__foot"><span class="pcard__title">LifeGood</span><span class="pcard__btn" data-i18n="p.more">Ver</span></span>
+        </button>
+        <button class="pcard" type="button" data-project="p7">
+          <span class="pcard__media"><img src="img/projects/pichoni-cover.svg" alt="El pájaro de Pichoni en blanco sobre violeta" loading="lazy" decoding="async"></span>
+          <span class="pcard__foot"><span class="pcard__title">Pichoni</span><span class="pcard__btn" data-i18n="p.more">Ver</span></span>
+        </button>
+        <button class="pcard" type="button" data-project="p4">
+          <span class="pcard__media"><img src="img/projects/mpeasy-youtube.webp" alt="mpeasy funcionando sobre un video de YouTube, con el panel de descarga y la herramienta para recortar" loading="lazy" decoding="async"></span>
+          <span class="pcard__foot"><span class="pcard__title">mpeasy</span><span class="pcard__btn" data-i18n="p.more">Ver</span></span>
+        </button>
+        <button class="pcard" type="button" data-project="p3">
+          <span class="pcard__media"><img src="img/projects/ecommerce-tienda.webp" alt="Página de prueba con el catálogo, el carrito y los pedidos del usuario" loading="lazy" decoding="async"></span>
+          <span class="pcard__foot"><span class="pcard__title">E-commerce API</span><span class="pcard__btn" data-i18n="p.more">Ver</span></span>
+        </button>
+        <button class="pcard" type="button" data-project="p2">
+          <span class="pcard__media"><img src="img/projects/reservini-reservar.webp" alt="Página donde un cliente elige día y hora para un corte de pelo" loading="lazy" decoding="async"></span>
+          <span class="pcard__foot"><span class="pcard__title">Reservini</span><span class="pcard__btn" data-i18n="p.more">Ver</span></span>
+        </button>
+        <button class="pcard" type="button" data-project="p1">
+          <span class="pcard__media"><img src="img/projects/figmatoroblox-figma.webp" alt="Botón diseñado en Figma con sus capas" loading="lazy" decoding="async"></span>
+          <span class="pcard__foot"><span class="pcard__title">FigmaToRoblox</span><span class="pcard__btn" data-i18n="p.more">Ver</span></span>
+        </button>
+      </div>
+      <div class="details" hidden>
+        <article class="detail" data-detail="p1">
+          <div class="detail__info">
+            <p class="case__num">07</p>
+            <h3 class="detail__title">FigmaToRoblox</h3>
+            <span class="label" data-i18n="p1.tag">Node.js · Luau</span>
+            <p class="detail__text" data-i18n="p1.text">Diseñás una pantalla en Figma, copiás un código de seis letras y la pegás en Roblox Studio. FigmaToRoblox la reconstruye como UI nativa de Roblox y le conecta los efectos.</p>
+            <ul class="project__points">
+              <li data-i18n="p1.b1">Plugin de Figma que convierte cada capa en datos: posición, tamaño, rellenos, bordes, esquinas y texto.</li>
+              <li data-i18n="p1.b2">Efectos con solo nombrar la capa (crecer, aplastar, aparecer) y vista previa antes de exportar.</li>
+              <li data-i18n="p1.b3">Servidor local en Node sin dependencias que guarda el diseño seis horas y sube las imágenes a Roblox.</li>
+            </ul>
+            <ul class="chips"><li>JavaScript</li><li>Node.js</li><li>Luau</li><li>Figma API</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://github.com/UiUyHerrera/FigmaToRoblox" target="_blank" rel="noopener" data-i18n="p.link">Ver en GitHub →</a>
+            </div>
+          </div>
+          <div class="detail__shots">
+            <img src="img/projects/figmatoroblox-figma.webp" alt="Botón diseñado en Figma con sus capas" loading="lazy" decoding="async">
+            <img src="img/projects/figmatoroblox-plugin.webp" alt="Plugin FigBridge en Roblox Studio con el código de seis letras" loading="lazy" decoding="async">
+            <img src="img/projects/figmatoroblox-roblox.webp" alt="El mismo botón como UI nativa dentro de Roblox" loading="lazy" decoding="async">
+          </div>
+        </article>
+        <article class="detail" data-detail="p2">
+          <div class="detail__info">
+            <p class="case__num">06</p>
+            <h3 class="detail__title">Reservini</h3>
+            <span class="label" data-i18n="p2.tag">Python · Flask</span>
+            <p class="detail__text" data-i18n="p2.text">Reservas online para negocios chicos como barberías, profes particulares o consultorios. El dueño carga servicios y horarios, comparte el link y los clientes eligen un turno libre.</p>
+            <ul class="project__points">
+              <li data-i18n="p2.b1">Página pública con los turnos libres de las próximas dos semanas y filtros por día y franja horaria.</li>
+              <li data-i18n="p2.b2">Nunca da el mismo turno dos veces, y manda mail de confirmación y recordatorio.</li>
+              <li data-i18n="p2.b3">Panel con las próximas reservas, en inglés y español, cualquier zona horaria y doce monedas.</li>
+            </ul>
+            <ul class="chips"><li>Flask</li><li>SQLAlchemy</li><li>PostgreSQL</li><li>GitHub Actions</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://github.com/UiUyHerrera/reservini" target="_blank" rel="noopener" data-i18n="p.link">Ver en GitHub →</a>
+            </div>
+          </div>
+          <div class="detail__shots">
+            <img src="img/projects/reservini-reservar.webp" alt="Página donde un cliente elige día y hora para un corte de pelo" loading="lazy" decoding="async">
+            <img src="img/projects/reservini-panel.webp" alt="Panel del negocio con el plan, las próximas reservas y los servicios" loading="lazy" decoding="async">
+          </div>
+        </article>
+        <article class="detail" data-detail="p3">
+          <div class="detail__info">
+            <p class="case__num">05</p>
+            <h3 class="detail__title">E-commerce API</h3>
+            <span class="label" data-i18n="p3.tag">TypeScript · Prisma</span>
+            <p class="detail__text" data-i18n="p3.text">El backend de una tienda online: cuentas con JWT, roles de cliente y admin, catálogo con stock, pedidos y estadísticas, con una página de prueba incluida.</p>
+            <ul class="project__points">
+              <li data-i18n="p3.b1">Node.js, TypeScript y Express sobre PostgreSQL con Prisma, y validación con Zod.</li>
+              <li data-i18n="p3.b2">Pedidos dentro de una sola transacción, para que dos compradores no se lleven la última unidad.</li>
+              <li data-i18n="p3.b3">Cancelar un pedido devuelve el stock, y los admins ven usuarios y estadísticas.</li>
+            </ul>
+            <ul class="chips"><li>Express</li><li>Prisma</li><li>PostgreSQL</li><li>Zod</li><li>Vitest</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://github.com/UiUyHerrera/ecommerce-rest-api" target="_blank" rel="noopener" data-i18n="p.link">Ver en GitHub →</a>
+            </div>
+          </div>
+          <div class="detail__shots">
+            <img src="img/projects/ecommerce-tienda.webp" alt="Página de prueba con el catálogo, el carrito y los pedidos del usuario" loading="lazy" decoding="async">
+            <img src="img/projects/ecommerce-swagger.webp" alt="Swagger UI con los endpoints de autenticación y productos" loading="lazy" decoding="async">
+          </div>
+        </article>
+        <article class="detail" data-detail="p4">
+          <div class="detail__info">
+            <p class="case__num">04</p>
+            <h3 class="detail__title">mpeasy</h3>
+            <span class="label" data-i18n="p4.tag">Extensión · Python</span>
+            <p class="detail__text" data-i18n="p4.text">Una extensión que descarga audio y video de YouTube, Facebook, Instagram y TikTok, pero no es un descargador más: se conecta a un programa en tu PC, así que los archivos no pasan por las descargas del navegador y llegan más rápido.</p>
+            <ul class="project__points">
+              <li data-i18n="p4.b1">Se comunica por native messaging con Python, yt-dlp y ffmpeg corriendo en tu PC.</li>
+              <li data-i18n="p4.b2">Elegís las carpetas de destino, la calidad y el formato: MP4, MP3 o pistas separadas.</li>
+              <li data-i18n="p4.b3">Recortar: marcás inicio y fin sobre el video y baja solo esa parte.</li>
+            </ul>
+            <ul class="chips"><li>JavaScript</li><li>Python</li><li>yt-dlp</li><li>ffmpeg</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://github.com/UiUyHerrera/yt-mp4" target="_blank" rel="noopener" data-i18n="p.link">Ver en GitHub →</a>
+            </div>
+          </div>
+          <div class="detail__shots">
+            <img src="img/projects/mpeasy-youtube.webp" alt="mpeasy funcionando sobre un video de YouTube, con el panel de descarga y la herramienta para recortar" loading="lazy" decoding="async">
+            <img class="is-small" src="img/projects/mpeasy-panel.webp" alt="Panel de mpeasy con calidad, formato y la lista de descargas" loading="lazy" decoding="async">
+          </div>
+        </article>
+        <article class="detail" data-detail="p5">
+          <div class="detail__info">
+            <p class="case__num">01</p>
+            <h3 class="detail__title">AimGearZ</h3>
+            <span class="label" data-i18n="p5.tag">Shopify · Liquid</span>
+            <p class="detail__text" data-i18n="p5.text">Su propia tienda de periféricos gamer en Chile. Diseñó y programó el tema completo de Shopify: catálogo, búsqueda, carrito y secciones a medida.</p>
+            <ul class="project__points">
+              <li data-i18n="p5.b1">Fichas por familia de producto, con selector de modelo y comparativas.</li>
+              <li data-i18n="p5.b2">Tarjetas con cinta 3D y una tecla de agregar al carrito que vuela hasta el carrito.</li>
+              <li data-i18n="p5.b3">Barra de compra fija, modo oscuro y un modo Halloween que se prende desde el editor.</li>
+            </ul>
+            <ul class="chips"><li>Shopify</li><li>Liquid</li><li>JavaScript</li><li>3D</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://aimgearz.cl" target="_blank" rel="noopener" data-i18n="p.site">Ver la tienda →</a>
+            </div>
+          </div>
+          <div class="detail__shots">
+            <img src="img/projects/aimgearz-home.webp" alt="Portada de AimGearZ con un mousepad y teclas flotando" loading="lazy" decoding="async">
+            <img src="img/projects/aimgearz-catalogo.webp" alt="Catálogo de AimGearZ con filtros y mouses" loading="lazy" decoding="async">
+          </div>
+        </article>
+        <article class="detail" data-detail="p6">
+          <div class="detail__info">
+            <p class="case__num">02</p>
+            <h3 class="detail__title">LifeGood</h3>
+            <span class="label" data-i18n="p6.tag">Diseño web · Shopify</span>
+            <p class="detail__text" data-i18n="p6.text">Diseño web de una tienda Shopify para dropshipping, con tema propio y una página de producto armada para vender: la taza mezcladora automática. Cada sección está pensada para que el visitante compre.</p>
+            <ul class="project__points">
+              <li data-i18n="p6.b1">Oferta del día con cuenta regresiva, barra de stock y packs con descuento.</li>
+              <li data-i18n="p6.b2">Sección de antes y después con los beneficios en íconos.</li>
+              <li data-i18n="p6.b3">Comparativa contra otras marcas, con botón de compra y garantía de devolución.</li>
+            </ul>
+            <ul class="chips"><li>Diseño web</li><li>Shopify</li><li>Dropshipping</li><li>Liquid</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://lifegood.cl" target="_blank" rel="noopener" data-i18n="p.site">Ver la tienda →</a>
+            </div>
+          </div>
+          <div class="detail__shots">
+            <img src="img/projects/lifegood-producto.webp" alt="Página de producto de la taza mezcladora con oferta, stock y packs" loading="lazy" decoding="async">
+            <img src="img/projects/lifegood-antes.webp" alt="Sección de antes y después con los beneficios de la taza" loading="lazy" decoding="async">
+            <img src="img/projects/lifegood-comparativa.webp" alt="Comparativa de la taza contra otras marcas" loading="lazy" decoding="async">
+          </div>
+        </article>
+        <article class="detail" data-detail="p7">
+          <div class="detail__info">
+            <p class="case__num">03</p>
+            <h3 class="detail__title">Pichoni</h3>
+            <span class="label" data-i18n="p7.tag">Python · Escritorio</span>
+            <p class="detail__text" data-i18n="p7.text">Una app de escritorio para Windows que pone actividades personalizadas en tu perfil de Discord: jugando, escuchando, viendo o compitiendo, con imagen, textos y tiempo propios.</p>
+            <ul class="project__points">
+              <li data-i18n="p7.b1">Perfiles guardados con vista previa en vivo de cómo se ve en Discord.</li>
+              <li data-i18n="p7.b2">Modo recomendado sin token, conectado a Discord por RPC local.</li>
+              <li data-i18n="p7.b3">Imágenes propias con recorte cuadrado, GIFs animados y apariencia personalizable.</li>
+            </ul>
+            <ul class="chips"><li>Python</li><li>Discord RPC</li><li>Windows</li><li>Instalador</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://github.com/UiUyHerrera/Pichoni" target="_blank" rel="noopener" data-i18n="p.link">Ver en GitHub →</a>
+            </div>
+          </div>
+          <div class="detail__shots">
+            <img src="img/projects/pichoni-cover.svg" alt="El pájaro de Pichoni en blanco sobre violeta" loading="lazy" decoding="async">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" id="sobre" data-spot="sobre">
+      <div class="about__pin" data-pin>
+        <h2 class="about__big" data-scrub data-i18n="about.big">Es de Canelones, Uruguay, y estudia Ingeniería en Computación en la UdelaR. Le gusta que el código funcione y que además se sienta bien al usarlo.</h2>
+      </div>
+    </section>
+
+    <section class="stack-scene" id="stack" data-spot="stack">
+      <div class="stack-scene__pin" data-stack-pin>
+        <div class="stack">
+          <div class="stack__group">
+            <p class="label" data-i18n="st.lang">Lenguajes</p>
+            <ul class="stack__grid">
+              <li class="tech" style="--icon: url(icons/typescript.svg); --c: #3178c6"><span class="tech__icon"></span>TypeScript</li>
+              <li class="tech" style="--icon: url(icons/javascript.svg); --c: #e8c91a"><span class="tech__icon"></span>JavaScript</li>
+              <li class="tech" style="--icon: url(icons/python.svg); --c: #3776ab"><span class="tech__icon"></span>Python</li>
+              <li class="tech" style="--icon: url(icons/lua.svg); --c: #00a2ff"><span class="tech__icon"></span>Luau</li>
+              <li class="tech" style="--icon: url(icons/dotnet.svg); --c: #7b5cff"><span class="tech__icon"></span>C# / .NET</li>
+            </ul>
+          </div>
+          <div class="stack__group">
+            <p class="label" data-i18n="st.back">Backend y datos</p>
+            <ul class="stack__grid">
+              <li class="tech" style="--icon: url(icons/nodedotjs.svg); --c: #5fa04e"><span class="tech__icon"></span>Node.js</li>
+              <li class="tech" style="--icon: url(icons/express.svg); --c: var(--accent)"><span class="tech__icon"></span>Express</li>
+              <li class="tech" style="--icon: url(icons/prisma.svg); --c: #5a67d8"><span class="tech__icon"></span>Prisma</li>
+              <li class="tech" style="--icon: url(icons/postgresql.svg); --c: #4169e1"><span class="tech__icon"></span>PostgreSQL</li>
+              <li class="tech" style="--icon: url(icons/flask.svg); --c: var(--accent)"><span class="tech__icon"></span>Flask</li>
+              <li class="tech" style="--icon: url(icons/sqlite.svg); --c: #0f80cc"><span class="tech__icon"></span>SQLite</li>
+            </ul>
+          </div>
+          <div class="stack__group">
+            <p class="label" data-i18n="st.tools">Plataformas y herramientas</p>
+            <ul class="stack__grid">
+              <li class="tech" style="--icon: url(icons/shopify.svg); --c: #7ab55c"><span class="tech__icon"></span>Shopify</li>
+              <li class="tech" style="--icon: url(icons/robloxstudio.svg); --c: #00a2ff"><span class="tech__icon"></span>Roblox Studio</li>
+              <li class="tech" style="--icon: url(icons/docker.svg); --c: #2496ed"><span class="tech__icon"></span>Docker</li>
+              <li class="tech" style="--icon: url(icons/githubactions.svg); --c: #2088ff"><span class="tech__icon"></span>GitHub Actions</li>
+              <li class="tech" style="--icon: url(icons/git.svg); --c: #f05032"><span class="tech__icon"></span>Git</li>
+              <li class="tech" style="--icon: url(icons/figma.svg); --c: #f24e1e"><span class="tech__icon"></span>Figma</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto" data-spot="contacto">
+      <a class="contact__big" href="mailto:bu3luciano@gmail.com" data-magnetic><span class="btn__text" data-split data-i18n="contact.big">Escribile</span></a>
+      <ul class="channels" data-say="channels">
+        <li data-reveal>
+          <button class="channel" type="button" data-copy="bu3luciano@gmail.com" data-magnetic>
+            <span class="label" data-i18n="c.email">Correo</span>
+            <span class="channel__value btn__text">bu3luciano@gmail.com</span>
+            <span class="channel__hint" data-hint data-i18n="c.copy">Copiar</span>
+          </button>
+        </li>
+        <li data-reveal>
+          <a class="channel" href="https://wa.me/59897812154" target="_blank" rel="noopener" data-magnetic>
+            <span class="label">WhatsApp</span>
+            <span class="channel__value btn__text">+598 97 812 154</span>
+            <span class="channel__hint" data-i18n="c.write">Escribir</span>
+          </a>
+        </li>
+        <li data-reveal>
+          <button class="channel" type="button" data-copy="pichoni" data-magnetic>
+            <span class="label">Discord</span>
+            <span class="channel__value btn__text">pichoni</span>
+            <span class="channel__hint" data-hint data-i18n="c.copy">Copiar</span>
+          </button>
+        </li>
+        <li data-reveal>
+          <a class="channel" href="https://github.com/UiUyHerrera" target="_blank" rel="noopener" data-magnetic>
+            <span class="label">GitHub</span>
+            <span class="channel__value btn__text">UiUyHerrera</span>
+            <span class="channel__hint" data-i18n="c.profile">Ver perfil</span>
+          </a>
+        </li>
+        <li data-reveal>
+          <a class="channel" href="https://www.linkedin.com/in/luciano-herrera-b71212416/" target="_blank" rel="noopener" data-magnetic>
+            <span class="label">LinkedIn</span>
+            <span class="channel__value btn__text">Luciano Herrera</span>
+            <span class="channel__hint" data-i18n="c.profile">Ver perfil</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <dialog class="modal" aria-label="Proyecto">
+    <div class="modal__panel" data-lenis-prevent>
+      <button class="modal__close" type="button" aria-label="Cerrar">×</button>
+      <div class="modal__body"></div>
+    </div>
+  </dialog>
+
+  <div class="bird" aria-label="El pájaro de Luciano" role="img">
+    <span class="bird__hit" aria-hidden="true"></span>
+    <div class="bird__bob">
+      <div class="bird__body">
+        <svg class="bird__fallback" viewBox="-180 -100 1300 1400" aria-hidden="true"><use href="#pj-body"/><ellipse cx="320" cy="274" rx="40" ry="16" fill="#000"/><ellipse cx="450" cy="274" rx="40" ry="16" fill="#000"/></svg>
+      </div>
+    </div>
+  </div>
+  <p class="bubble" aria-live="polite"><span data-bubble></span></p>
+  <div class="hand" aria-hidden="true">
+    <svg viewBox="0 0 64 76">
+      <g class="hand__point">
+        <path d="M24 60C18 54 13 47 13 41C13 36 17 34 21 36L25 39V13C25 7 34 7 34 13V31C34 27 41 27 41 31V33C41 29 48 29 48 33V35C48 31 55 31 55 36V47C55 54 51 58 47 60Z"/>
+        <path d="M34 31v6M41 33v5M48 35v4"/>
+        <rect x="20" y="59" width="31" height="13" rx="5"/>
+      </g>
+      <g class="hand__fist">
+        <path d="M20 60C15 54 13 46 14 39C14 33 18 30 23 31C23 25 31 24 32 30C33 24 41 24 41 30C42 25 50 25 50 31C51 27 57 28 57 34V47C57 54 53 58 48 60Z"/>
+        <path d="M14 42C15 37 25 36 31 39C34 41 32 45 27 45C22 45 17 44 14 43Z"/>
+        <path d="M32 30v5M41 30v5"/>
+        <rect x="21" y="59" width="31" height="13" rx="5"/>
+      </g>
+    </svg>
+  </div>
+
+  <footer class="foot">
+    <p class="foot__name" aria-label="Luciano"><span>L</span><span>U</span><span>C</span><span>I</span><span>A</span><span>N</span><span>O</span></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+  <script src="i18n.js"></script>
+  <script src="main.js"></script>
+  <script type="module" src="bird3d.js"></script>
+</body>
+</html>
