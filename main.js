@@ -277,13 +277,18 @@ if (reduceMotion) {
       e.preventDefault();
       const toEnd = link.hasAttribute("data-end");
       autoScroll = true;
-      lenis.scrollTo(toEnd ? lenis.limit : link.getAttribute("href"), {
-        duration: toEnd ? 2.2 : 1.4,
-        force: true,
-        onComplete: () => {
-          if (toEnd) lenis.scrollTo(lenis.limit, { immediate: true, force: true });
+      if (toEnd) {
+        lenis.scrollTo(lenis.limit, { immediate: true, force: true });
+        requestAnimationFrame(() => {
+          lenis.scrollTo(lenis.limit, { immediate: true, force: true });
           autoScroll = false;
-        },
+        });
+        return;
+      }
+      lenis.scrollTo(link.getAttribute("href"), {
+        duration: 1.4,
+        force: true,
+        onComplete: () => { autoScroll = false; },
       });
     });
   });
