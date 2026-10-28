@@ -1,6 +1,6 @@
 const I18N = {
   en: {
-    title: "Luciano Herrera — Full stack & Roblox",
+    title: "Luciano Herrera — Full stack developer",
     text: {
       "nav.cta": "Write him",
       "hero.a": "Luciano builds apps that",
