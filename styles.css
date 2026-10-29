@@ -931,6 +931,9 @@ main { overflow-x: clip; }
 
 .foot__name span { display: inline-block; cursor: default; }
 
+.foot__badge { display: block; width: max-content; margin-top: 20px; }
+.foot__badge img { display: block; image-rendering: pixelated; }
+
 
 @media (max-width: 720px) {
   .nav { gap: 6px; }
