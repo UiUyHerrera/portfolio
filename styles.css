@@ -52,19 +52,18 @@ html.lenis::-webkit-scrollbar { display: none; }
   pointer-events: none;
 }
 
-.edge--top { top: 0; }
-.edge--bottom { bottom: 0; flex-direction: column-reverse; }
+.edge--top { top: -40px; }
+.edge--bottom { bottom: -40px; flex-direction: column-reverse; }
 
 .edge i {
   height: clamp(10px, 1.6vh, 16px);
-  background: color-mix(in srgb, var(--paper) 25%, transparent);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   -webkit-mask: var(--dots) 0 0 / 8px 8px;
   mask: var(--dots) 0 0 / 8px 8px;
 }
 
-.edge i:nth-child(1) { -webkit-mask: none; mask: none; }
+.edge i:nth-child(1) { height: calc(clamp(10px, 1.6vh, 16px) + 40px); -webkit-mask: none; mask: none; }
 .edge i:nth-child(2) { --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='2' height='2'/%3E%3Crect x='2' y='0' width='2' height='2'/%3E%3Crect x='4' y='0' width='2' height='2'/%3E%3Crect x='2' y='2' width='2' height='2'/%3E%3Crect x='6' y='2' width='2' height='2'/%3E%3Crect x='0' y='4' width='2' height='2'/%3E%3Crect x='4' y='4' width='2' height='2'/%3E%3Crect x='6' y='4' width='2' height='2'/%3E%3Crect x='2' y='6' width='2' height='2'/%3E%3Crect x='6' y='6' width='2' height='2'/%3E%3C/svg%3E"); }
 .edge i:nth-child(3) { --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='2' height='2'/%3E%3Crect x='4' y='0' width='2' height='2'/%3E%3Crect x='2' y='2' width='2' height='2'/%3E%3Crect x='0' y='4' width='2' height='2'/%3E%3Crect x='4' y='4' width='2' height='2'/%3E%3C/svg%3E"); }
 .edge i:nth-child(4) { --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='2' height='2'/%3E%3Crect x='4' y='4' width='2' height='2'/%3E%3C/svg%3E"); }
