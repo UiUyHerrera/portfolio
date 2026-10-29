@@ -68,8 +68,9 @@ const blip = () => {
   const filter = audio.createBiquadFilter();
   const gain = audio.createGain();
   osc.type = "triangle";
-  osc.frequency.setValueAtTime(random(420, 640), now);
-  osc.frequency.exponentialRampToValueAtTime(random(300, 420), now + 0.06);
+  const pitch = 440 * 2 ** (random(0, 5) / 12);
+  osc.frequency.setValueAtTime(pitch * 1.25, now);
+  osc.frequency.exponentialRampToValueAtTime(pitch, now + 0.07);
   filter.type = "lowpass";
   filter.frequency.value = 1800;
   gain.gain.setValueAtTime(0.0001, now);
@@ -262,7 +263,7 @@ if (reduceMotion) {
   if (lang) applyLanguage(lang);
   if (!lang || !theme) hero.classList.add("is-picking");
 
-  const lenis = new Lenis({ lerp: 0.06, wheelMultiplier: 0.7 });
+  const lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.95 });
   scroller = lenis;
   let autoScroll = false;
   let flown = false;
@@ -397,35 +398,29 @@ if (reduceMotion) {
     gsap.to(bubble, { autoAlpha: 0, scale: 0.8, duration: 0.2, overwrite: true });
   };
 
-  const typed = (parts, count) => {
-    let left = count;
-    bubbleText.replaceChildren(...parts.map(({ text, mark }) => {
-      const shown = text.slice(0, Math.max(0, left));
-      left -= text.length;
-      if (!mark) return document.createTextNode(shown);
-      const em = document.createElement("em");
-      em.textContent = shown;
-      return em;
-    }));
-  };
-
   const say = (line) => {
     if (!onScreen()) return;
     clearInterval(typer);
-    const parts = line.split("*").map((text, i) => ({ text, mark: i % 2 === 1 }));
-    const total = parts.reduce((sum, part) => sum + part.text.length, 0);
-    typed(parts, 0);
+    const pieces = [];
+    bubbleText.replaceChildren(...line.split("*").flatMap((text, i) => text.split(/(\s+)/).filter(Boolean).map((chunk) => {
+      if (!chunk.trim()) return document.createTextNode(chunk);
+      const word = document.createElement(i % 2 ? "em" : "span");
+      word.textContent = chunk;
+      word.style.opacity = 0.12;
+      pieces.push(word);
+      return word;
+    })));
     placeBubble();
-    gsap.fromTo(bubble, { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(2)", overwrite: true });
-    emit("bird:talk", total * 36 + 120);
-    talkingUntil = performance.now() + total * 36 + Math.max(2600, total * 45);
+    gsap.fromTo(bubble, { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)", overwrite: "auto" });
+    const total = pieces.length * 120;
+    emit("bird:talk", total + 120);
+    talkingUntil = performance.now() + total + Math.max(2600, line.length * 45);
     let i = 0;
     typer = setInterval(() => {
-      typed(parts, ++i);
-      placeBubble();
-      if (i % 3 === 0) blip();
-      if (i >= total) clearInterval(typer);
-    }, 36);
+      pieces[i].style.opacity = 1;
+      blip();
+      if (++i >= pieces.length) clearInterval(typer);
+    }, 120);
   };
 
   const sayNext = (text) => {
@@ -468,6 +463,34 @@ if (reduceMotion) {
       .to(birdBody, { scaleX: 1, scaleY: 1, duration: 0.6, ease: "elastic.out(1, 0.4)" });
   };
 
+  const glides = ["top", "hago", "trabajo", "contacto"];
+  const glideNext = { top: "hago", hago: "trabajo" };
+
+  const glideTarget = () => {
+    const to = spotPx(current);
+    const next = glideNext[current];
+    if (!next) return to;
+    const top = document.querySelector(`[data-spot="${next}"]`).getBoundingClientRect().top;
+    const p = clamp(0, 1, (innerHeight - top) / (innerHeight * 0.45));
+    const end = spotPx(next);
+    return { x: lerp(to.x, end.x, p), y: lerp(to.y, end.y, p), s: lerp(to.s, end.s, p) };
+  };
+
+  gsap.ticker.add(() => {
+    if (!ready || dragging || shipOn || landing || hopTl?.isActive() || !glides.includes(current)) return;
+    const to = glideTarget();
+    const dx = to.x - state.x;
+    const dy = to.y - state.y;
+    const ds = to.s - state.s;
+    if (Math.abs(dx) + Math.abs(dy) + Math.abs(ds) * 400 < 0.4) return;
+    if (Math.abs(dx) > 30) face(dx > 0 ? 1 : -1);
+    const k = 1 - Math.exp(-gsap.ticker.deltaRatio() / 7);
+    state.x += dx * k;
+    state.y += dy * k;
+    state.s += ds * k;
+    render();
+  });
+
   const go = (name, direction = 1) => {
     if (name === current || !ready || dragging || shipOn) {
       current = name;
@@ -490,6 +513,12 @@ if (reduceMotion) {
     emit("bird:plane", name === "stack");
     if (name === "stack") engineOn();
     else engineOff();
+    if (glides.includes(name)) {
+      hopTl?.kill();
+      wearOutfit(outfitFor[name]);
+      if (words()[name]) say(words()[name]);
+      return;
+    }
     hop(spotPx(name), () => {
       if (lock) resumeScroll();
       wearOutfit(outfitFor[name]);
@@ -525,6 +554,20 @@ if (reduceMotion) {
     say(words().pokes[pokeIndex++ % words().pokes.length]);
     jump();
   };
+
+  document.querySelector('[data-copy*="@"]').addEventListener("pointerenter", () => {
+    if (ready && !dragging && !shipOn && !hopTl?.isActive()) jump("-25%");
+  });
+
+  document.querySelectorAll(".pcard").forEach((card) => {
+    const media = card.querySelector(".pcard__media");
+    const develop = (self) => { media.dataset.dither = reduceMotion ? 0 : 16 - Math.round(self.progress * 8) * 2; };
+    ScrollTrigger.create({ trigger: card, start: "top 98%", end: "top 55%", onUpdate: develop, onRefresh: develop });
+    card.addEventListener("pointerenter", () => {
+      const r = media.getBoundingClientRect();
+      emit("bird:look", { x: r.left + r.width / 2, y: r.top + r.height / 2 });
+    });
+  });
 
   const swing = gsap.quickTo(birdBody, "rotation", { duration: 0.4, ease: "power3" });
   const lean = gsap.quickTo(bird, "rotation", { duration: 0.5, ease: "power3" });
@@ -1113,11 +1156,17 @@ if (reduceMotion) {
 
   ScrollTrigger.addEventListener("scrollEnd", () => lean(0));
 
+  const bubbleSkew = { v: 0 };
+
   ScrollTrigger.create({
     onUpdate: (self) => {
       const velocity = self.getVelocity();
       if (ready && !dragging) lean(clamp(-10, 10, velocity / 300));
       if (ready && dizzyReady && Math.abs(velocity) > 4000) dizzy();
+      const kick = clamp(-7, 7, velocity / -350);
+      if (Math.abs(kick) <= Math.abs(bubbleSkew.v)) return;
+      bubbleSkew.v = kick;
+      gsap.to(bubbleSkew, { v: 0, duration: 1, ease: "elastic.out(1, 0.35)", overwrite: true, onUpdate: () => gsap.set(bubble, { skewY: bubbleSkew.v }) });
     },
   });
 
