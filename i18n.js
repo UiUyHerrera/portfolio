@@ -52,6 +52,7 @@ const I18N = {
       "p7.b1": "Saved profiles with a live preview of how it looks on Discord.",
       "p7.b2": "A recommended mode with no token, connected to Discord over local RPC.",
       "p7.b3": "Custom images with square cropping, animated GIFs and a customizable look.",
+      "c.friends": "Friends",
       "about.big": "He's from Canelones, Uruguay, and studies Computer Engineering at UdelaR. He likes code that works and also feels good to use.",
       "st.lang": "Languages",
       "st.back": "Backend & data",
