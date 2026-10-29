@@ -878,6 +878,9 @@ main { overflow-x: clip; }
   text-align: center;
 }
 
+.contact__badge { position: absolute; left: var(--gutter); bottom: 24px; z-index: 2; }
+.contact__badge img { display: block; image-rendering: pixelated; }
+
 .contact__big {
   display: inline-block;
   font-size: clamp(72px, 17vw, 300px);
@@ -930,9 +933,6 @@ main { overflow-x: clip; }
 }
 
 .foot__name span { display: inline-block; cursor: default; }
-
-.foot__badge { display: block; width: max-content; margin-top: 20px; }
-.foot__badge img { display: block; image-rendering: pixelated; }
 
 
 @media (max-width: 720px) {
